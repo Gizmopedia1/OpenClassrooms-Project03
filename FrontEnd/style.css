@@ -86,18 +86,20 @@ h2{
 	font-size: 30px;
 	color: #1D6154
 }
-nav ul {
+nav {
 	display: flex;
+	justify-content: space-between ;
 	align-items: center;
-	list-style-type: none;
-
-}
-nav li {
-	padding: 0 10px;
-	font-size: 1.2em;
+	gap: 50px;
+	text-decoration: none;
+	font-size: 16px;
 }
 
-li:hover {
+nav img {
+	height: 22px;
+}
+
+nav:hover {
 	color: #B1663C;
 }
 #introduction {
@@ -142,6 +144,7 @@ li:hover {
     border-radius: 60px;
     margin: 10px;
 	color: #1D6154;
+	background-color: #FFFEF8;
     text-align: center;
 	text-decoration: none;
     height: 38px;

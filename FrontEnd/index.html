@@ -9,18 +9,16 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./style.css">
-	<script src="Backend/gallery.js"></script>
+	<script type="module" src="gallery.js"></script>
 </head>
 <body>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
-		<ul>
-			<li>projets</li>
-			<li>contact</li>
-			<li>login</li>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-		</ul>
+			<div><a href="">projets</a></div>
+			<div><a href="">contact</a></div>
+			<div><a href="">login</a></div>
+			<div><a href=""><img src="./assets/icons/instagram.png" alt="Instagram"></a></div>
 	</nav>
 </header>
 <main>
@@ -38,13 +36,13 @@
 	<section id="portfolio">
 		<h2>Mes Projets</h2>
 		<div class="container-box-filtres">  
-			<div class="box-filtres">Tous</div>
-			<div class="box-filtres">Objets</div>
-			<div class="box-filtres">Appartements</div>
-			<div class="box-filtres">Hotels & restaurants</div>
+			<button class="box-filtres" id="filtresTous">Tous</button>
+			<button class="box-filtres" id="filtresObjets">Objets</button>
+			<button class="box-filtres" id="filtresAppartements">Appartements</button>
+			<button class="box-filtres" id="filtresHotels">Hotels & restaurants</button>
 		  </div>
-		<section class="gallery">
-		</section>
+		<div class="gallery" id="gallery">
+		</div>
 	</section>
 	<section id="contact">
 		<h2>Contact</h2>
