@@ -102,104 +102,36 @@ nav img {
 nav:hover {
 	color: #B1663C;
 }
-#introduction {
-	display: flex;
-	align-items: center;
-}
-#introduction figure {
-	flex: 1
-}
-#introduction img {
-	display: block;
-	margin: auto;
-	width: 80%;
-}
 
-#introduction article {
-	flex: 1
-}
-#introduction h2 {
-	margin-bottom: 1em;
-}
-
-#introduction p {
-	margin-bottom: 0.5em;
-}
-#portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
-}
-
-.container-box-filtres {
-	display: flex;
-	width: 100%;
-	justify-content: center;
-	margin-bottom: 50px;
-}
-
-.box-filtres {
-	font-weight: 700;
-    font-size: 16px;
-    border: 1px solid #1D6154;
-    border-radius: 60px;
-    margin: 10px;
-	color: #1D6154;
-	background-color: #FFFEF8;
-    text-align: center;
-	text-decoration: none;
-    height: 38px;
-    align-content: center;
-    padding-left: 20px;
-    padding-right: 20px;
-	cursor: pointer;
-}
-
-.box-filtres:hover,
-.box-filtres:focus {
-	background-color: #1D6154;
-	color: white;
-}
-
-.gallery {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
-}
-
-.gallery img {
-	width: 100%;
-
-}
-#contact {
+#login {
 	width: 50%;
 margin: auto;
 }
-#contact > * {
+
+#login > * {
 	text-align: center;
 
 }
-#contact h2{
+#login h2{
 	margin-bottom: 20px;
 }
-#contact form {
+#login form {
 	text-align: left;
-	margin-top:30px;
+	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input {
+#login input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#contact label {
+#login label {
 	margin: 2em 0 1em 0;
 }
-#contact textarea {
+#login textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
@@ -213,6 +145,7 @@ input[type="submit"]{
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
+	cursor: pointer;
 }
 
 footer nav ul {
