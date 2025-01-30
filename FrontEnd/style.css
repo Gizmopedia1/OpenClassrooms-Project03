@@ -48,7 +48,6 @@ table {
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
@@ -56,9 +55,12 @@ body {
 	;
 }
 header {
+	max-width: 1140px;
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px;
+	margin-left: 12.5%;
+    margin-right: 12.5%;
 }
 section {
 	margin: 50px 0
@@ -99,12 +101,26 @@ nav img {
 	height: 22px;
 }
 
-nav:hover {
-	color: #B1663C;
+nav a {
+	text-decoration: none;
+	color: black;
 }
+
+nav a:hover {
+	color: #B1663C;
+	font-weight: bold;
+}
+
+nav a:active {
+	color: black;
+	font-weight: bold;
+}
+
 #introduction {
 	display: flex;
 	align-items: center;
+	margin-left: 12.5%;
+	margin-right: 12.5%;
 }
 #introduction figure {
 	flex: 1
@@ -125,6 +141,11 @@ nav:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+
+#portfolio {
+	margin-top: 150px;
+}
+
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
@@ -163,9 +184,10 @@ nav:hover {
 .gallery {
 	width: 100%;
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 21% 21% 21%;
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
+	justify-content: center;
 }
 
 .gallery img {
@@ -173,9 +195,13 @@ nav:hover {
 
 }
 #contact {
-	width: 50%;
-margin: auto;
+    width: 100%;
+    align-content: center;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 }
+
 #contact > * {
 	text-align: center;
 
@@ -184,8 +210,9 @@ margin: auto;
 	margin-bottom: 20px;
 }
 #contact form {
+	width: 380px;
 	text-align: left;
-	margin-top:30px;
+	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
 }
@@ -209,16 +236,28 @@ input[type="submit"]{
 	font-weight: 700;
 	color: white;
 	background-color: #1D6154;
-	margin : 2em auto ;
+	margin : 2em auto;
 	width: 180px;
 	text-align: center;
-	border-radius: 60px ;
+	border-radius: 60px;
+	cursor: pointer;
+}
+
+input:hover[type="submit"]{
+	background-color: #0E2F28;
+	cursor: pointer;
+}
+
+footer {
+	background-color: white;
 }
 
 footer nav ul {
 	display: flex;
 	width: 100%;
 	justify-content: flex-end;
-	margin: 2em
-}
+	margin-top: 35px;
+	margin-bottom: 35px;
+	margin-right: 150px;
 
+}
