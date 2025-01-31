@@ -55,13 +55,18 @@ body {
 	;
 }
 header {
-	max-width: 1140px;
 	display: flex;
 	justify-content: space-between;
 	margin: 50px;
 	margin-left: 12.5%;
     margin-right: 12.5%;
 }
+
+header
+main {
+	max-width: 1140px;
+}
+
 
 section {
 	margin: 50px 0
@@ -108,7 +113,6 @@ nav a {
 }
 
 nav a:hover {
-	color: #B1663C;
 	font-weight: bold;
 }
 

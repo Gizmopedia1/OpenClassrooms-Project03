@@ -43,7 +43,7 @@ genererObjets(objets)
         return objets.userId == 1})
         console.log(tousFiltres)
 
-    // Effacement de la gallerie et regénération de la page
+    // Effacement de la galerie et regénération de la page
     document.querySelector(".gallery").innerHTML = "";
     genererObjets(tousFiltres);
 });
@@ -55,7 +55,7 @@ genererObjets(objets)
             return objets.categoryId == 1})
             console.log(objetsFiltres)
     
-    // Effacement de la gallerie et regénération de la page
+    // Effacement de la galerie et regénération de la page
         document.querySelector(".gallery").innerHTML = "";
         genererObjets(objetsFiltres);
     });
@@ -67,7 +67,7 @@ genererObjets(objets)
         return objets.categoryId == 2})
         console.log(appartsFiltres)
 
-    // Effacement de la gallerie et regénération de la page
+    // Effacement de la galerie et regénération de la page
     document.querySelector(".gallery").innerHTML = "";
     genererObjets(appartsFiltres);
 });
@@ -79,7 +79,7 @@ genererObjets(objets)
         return objets.categoryId == 3})
         console.log(hotelsFiltres)
         
-    // Effacement de la gallerie et regénération de la page
+    // Effacement de la galerie et regénération de la page
     document.querySelector(".gallery").innerHTML = "";
     genererObjets(hotelsFiltres);
 });

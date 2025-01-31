@@ -55,13 +55,18 @@ body {
 	;
 }
 header {
-	max-width: 1140px;
 	display: flex;
 	justify-content: space-between;
 	margin: 50px;
 	margin-left: 12.5%;
     margin-right: 12.5%;
 }
+
+header
+main {
+	max-width: 1140px;
+}
+
 section {
 	margin: 50px 0
 }
@@ -107,7 +112,6 @@ nav a {
 }
 
 nav a:hover {
-	color: #B1663C;
 	font-weight: bold;
 }
 
@@ -117,22 +121,24 @@ nav a:active {
 }
 
 #introduction {
-	display: flex;
-	align-items: center;
-	margin-left: 12.5%;
-	margin-right: 12.5%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+	margin-top: 150px;
+	gap: 75px;
 }
 #introduction figure {
-	flex: 1
+
 }
 #introduction img {
 	display: block;
 	margin: auto;
-	width: 80%;
+	width: 475px;
 }
 
 #introduction article {
-	flex: 1
 }
 #introduction h2 {
 	margin-bottom: 1em;
@@ -140,6 +146,7 @@ nav a:active {
 
 #introduction p {
 	margin-bottom: 0.5em;
+	width: 400px;
 }
 
 #portfolio {
@@ -184,7 +191,7 @@ nav a:active {
 .gallery {
 	width: 100%;
 	display: grid;
-	grid-template-columns: 21% 21% 21%;
+	grid-template-columns: 305px 305px 305px;
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
 	justify-content: center;
