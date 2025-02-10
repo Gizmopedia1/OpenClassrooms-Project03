@@ -1,9 +1,9 @@
-// Récupération des pièces depuis le fichier JSON
-const reponse = await fetch("http://localhost:5678/api/works")
+// Récupération des objets depuis le fichier JSON works
+const response = await fetch("http://localhost:5678/api/works")
 
-console.log (reponse)
+console.log (response)
 
-const objets = await reponse.json();
+const objets = await response.json();
 console.log (objets)
 
 // Fonction qui génère toute la page web
@@ -36,53 +36,35 @@ section.appendChild (figureElement)
 genererObjets(objets)
 
 // Boutons de filtres
-    // Filtre Tous
-    const filtresTous = document.getElementById("filtresTous")
-    filtresTous.addEventListener("click", function () {
-       const tousFiltres = objets.filter(function (objets) {
-        return objets.userId == 1})
-        console.log(tousFiltres)
+    
+// Récupération des objets depuis le fichier JSON categories
+const responseCategories = await fetch("http://localhost:5678/api/categories");
+const categories = await responseCategories.json();
 
-    // Effacement de la galerie et regénération de la page
-    document.querySelector(".gallery").innerHTML = "";
-    genererObjets(tousFiltres);
-});
-    
-// Filtre Objets
-        const filtresObjets = document.getElementById("filtresObjets")
-        filtresObjets.addEventListener("click", function () {
-           const objetsFiltres = objets.filter(function (objets) {
-            return objets.categoryId == 1})
-            console.log(objetsFiltres)
-    
-    // Effacement de la galerie et regénération de la page
-        document.querySelector(".gallery").innerHTML = "";
-        genererObjets(objetsFiltres);
-    });
-        
-    // Filtre Appartements
-    const filtresAppartements = document.getElementById("filtresAppartements")
-    filtresAppartements.addEventListener("click", function () {
-       const appartsFiltres = objets.filter(function (objets) {
-        return objets.categoryId == 2})
-        console.log(appartsFiltres)
+function addButton(name) {
+    const button = document.createElement("button");
+    button.className = "box-filtres";
+    button.innerHTML = name;
 
-    // Effacement de la galerie et regénération de la page
-    document.querySelector(".gallery").innerHTML = "";
-    genererObjets(appartsFiltres);
-});
-    
-    // Filtre Hôtels
-    const filtresHotels = document.getElementById("filtresHotels")
-    filtresHotels.addEventListener("click", function () {
-       const hotelsFiltres = objets.filter(function (objets) {
-        return objets.categoryId == 3})
-        console.log(hotelsFiltres)
-        
-    // Effacement de la galerie et regénération de la page
-    document.querySelector(".gallery").innerHTML = "";
-    genererObjets(hotelsFiltres);
-});
-    
-// Mise à jour de l'affichage
+    button.addEventListener('click', function() {
+        const filteredObjects = objets.filter(function (objets) {
+            return objets.category.name == name
+        })
 
+        document.querySelector(".gallery").innerHTML ="";
+
+        if (name == 'Tous') {
+            genererObjets(objets); 
+        } else {
+            genererObjets(filteredObjects)
+        }
+
+    })
+
+    document.getElementById('container-box-filtres').appendChild(button);
+}
+
+addButton('Tous')
+for (let i=0; i<categories.length; i++) {
+    addButton(categories[i].name)
+}
