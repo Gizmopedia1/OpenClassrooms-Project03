@@ -44,16 +44,18 @@ function genererObjets(objets) {
 
         const imageElement = document.createElement("img");
         imageElement.src = article.imageUrl;
+        imageElement.alt = article.title;
         
-        const dataID = article.id;
         const boutonPoubelle = document.createElement("button");
         boutonPoubelle.classList.add("boutonPoubelle")
-        boutonPoubelle.setAttribute("data-id", dataID);
         boutonPoubelle.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+        const dataID = article.id;
+        boutonPoubelle.setAttribute("data-id", dataID);
 
         const figureElement = document.createElement("figure");
         figureElement.appendChild (imageElement);
         figureElement.appendChild (boutonPoubelle);
+        figureElement.setAttribute("data-id", dataID);
 
         const section = document.getElementById("modal-gallery");
         section.appendChild (figureElement)
@@ -63,13 +65,37 @@ function genererObjets(objets) {
 // Affichage de tous les objets
 genererObjets(objets)
 
-// Recupération de l'ID de chaque objet au clic
-const buttons = document.querySelectorAll(".boutonPoubelle");
-buttons.forEach(button => {
-    button.addEventListener('click', (event) => {
-        const id = event.target.dataset.id; // Récupération de l'id ici
-        console.log('ID à supprimer:', id); // Vérifiez l'ID
 
-        // Appelez votre fonction de suppression ici en utilisant cet id
+// function supprimerObjets() {
+// Recupération de l'ID de chaque objet au clic
+    const buttons = document.querySelectorAll(".boutonPoubelle");
+    
+    buttons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const id = event.target.dataset.id; // Récupération de l'id
+            console.log('ID à supprimer:', id); // Vérifiez l'ID
+
+            try {
+                const response = fetch(`http://localhost:5678/api/works/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        headers: {"Content-Type": "application/json"},
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    }
+                });
+                
+                if (response.ok) {
+                    // Supprimer l'élément du DOM
+                    const elementSuppression = document.getElementById(id); // Assurez-vous que l'élément a un id
+                    elementSuppression.remove(figure);
+                    genererObjets(objets)
+
+                    alert('Élément supprimé avec succès !');
+                } else {
+                    alert('Erreur lors de la suppression.');
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+            }
+        });
     });
-});
