@@ -7,19 +7,27 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/d29ade17cb.js" crossorigin="anonymous"></script>
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./style.css">
 	<script type="module" src="gallery.js"></script>
+	<script type="module" src="modal.js"></script>
 </head>
 <body>
 <header>
-	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-	<nav>
+	<div id="mode-edition-header">
+		<p><i class="fa-regular fa-pen-to-square"></i> Mode édition</p>
+	</div>
+	<div class="container-header">
+		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+		<nav>
 			<div><a href="">projets</a></div>
 			<div><a href="">contact</a></div>
-			<div><a href="login.html">login</a></div>
+			<div id="login"><a href="login.html">login</a></div>
+			<div id="logout"><a href="">logout</a></div>
 			<div><a href=""><img src="./assets/icons/instagram.png" alt="Instagram"></a></div>
-	</nav>
+		</nav>
+	</div>
 </header>
 <main>
 	<section id="introduction">
@@ -34,7 +42,22 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="flex-portfolio-title">
+			<h2>Mes Projets</h2>
+			<div id="mode-edition-portfolio">
+				<a href="#modal1" class="js-modal"><i class="fa-regular fa-pen-to-square"></i> modifier</a>
+
+				<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display: none;">
+					<div class="modal-wrapper js-modal-stop">
+						<a href="" class="close-modal"><i class="fa-solid fa-xmark"></i></a>
+						<h3 id="titlemodal">Galerie photo</h3>
+						<div class="modal-gallery" id="modal-gallery">
+						</div>
+						<button class="boutonAjout">Ajouter une photo</button>
+					</div>
+				</aside>
+			</div>
+		</div>
 		<div class="container-box-filtres" id="container-box-filtres">  
 		  </div>
 		<div class="gallery" id="gallery">

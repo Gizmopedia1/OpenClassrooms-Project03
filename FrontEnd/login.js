@@ -1,11 +1,3 @@
-// Récupération des pièces depuis le fichier JSON
-// const reponse = await fetch("http://localhost:5678/api/users/login")
-// console.log (fetch)
-
-// const login = await reponse.json();
-// console.log (login)
-
-// Submit
 const form = document.querySelector('form');
 form.addEventListener("submit", async(event) => {
     event.preventDefault()
@@ -31,7 +23,9 @@ form.addEventListener("submit", async(event) => {
             console.log(data.token)
 
             window.localStorage.setItem("token", data.token);
-            // window.location.href = 'index.html?mode=edition'
+            window.location.href = 'index.html'
         }
 
 });
+
+
