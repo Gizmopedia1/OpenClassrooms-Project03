@@ -11,7 +11,6 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./style.css">
 	<script type="module" src="gallery.js"></script>
-	<script type="module" src="modal.js"></script>
 </head>
 <body>
 <header>
@@ -50,10 +49,33 @@
 				<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display: none;">
 					<div class="modal-wrapper js-modal-stop">
 						<a href="" class="close-modal"><i class="fa-solid fa-xmark"></i></a>
-						<h3 id="titlemodal">Galerie photo</h3>
-						<div class="modal-gallery" id="modal-gallery">
+						<div id="modal-suppression">
+							<h3 id="titlemodal">Galerie photo</h3>
+							<div class="modal-gallery" id="modal-gallery">
+							</div>
+							<button class="boutonAjout" id="boutonAjout">Ajouter une photo</button>
 						</div>
-						<button class="boutonAjout">Ajouter une photo</button>
+						<div id="modal-ajout">
+							<i class="fa-solid fa-arrow-left" id="retour-modal"></i>
+							<h3 id="titlemodal">Ajout photo</h3>
+							<form>
+								<div class="ajoutImage">
+									<img src="./assets/icons/picture.png"/>
+									<label for="ajouterImage">+ Ajouter photo</label>
+									<input type="file" id="images" name="images" accept="image/png, image/jpeg" />
+									<p>jpg, png : 4mo max</p>
+								</div>
+								<div class="formInputs">
+									<label for="titre">Titre</label>
+									<input type="text" id="titre" name="titre" required>
+									<label for="categories">Catégorie</label>
+									<select id="categories" name="categories" required>
+										<option value="" disabled selected></option>
+									</select>
+								</div>
+								<input id="boutonValider" class="boutonValider" type="submit" value="Valider">
+							</form>
+						</div>
 					</div>
 				</aside>
 			</div>

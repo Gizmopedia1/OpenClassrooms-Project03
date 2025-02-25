@@ -216,10 +216,18 @@ nav a:active {
 	left: 250px;
 }
 
+#modal-suppression {
+	display: block;
+}
+
+#modal-ajout {
+	display: none;
+}
+
 .modal-wrapper h3 {
 	font-size: 26px;
-	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-top: 30px;
+	margin-bottom: 40px;
 }
 
 .boutonAjout {
@@ -227,13 +235,13 @@ nav a:active {
 	height: 40px;
 	margin-top: 40px;
 	margin-bottom: 50px;
+	font-family: 'Syne';
 	font-size: 14px;
 	font-weight: 700px;
 	border-radius: 60px;
 	color: white;
 	background-color: #1D6154;
 	border: 0px;
-	font-family: 'Syne';
 	cursor: pointer;
 
 }
@@ -261,11 +269,128 @@ nav a:active {
 	justify-content: center;
 	padding-bottom: 50px;
 	border-bottom: 1px solid black;
-
+	width: 420px;
+    margin-left: 105px;
+    margin-right: 105px;
 }
 
 .modal-gallery img {
 	width: 100%;
+}
+#modal-ajout form {
+	display: flex;
+    flex-direction: column;
+    margin-left: 105px;
+    margin-right: 105px;
+	text-align: start;
+	align-items: center;
+}
+
+#retour-modal {
+	font-size: 24px;
+	position: relative;
+    right: 250px;
+	cursor: pointer;
+}
+
+.ajoutImage {
+	width: 420px;
+	height: 170px;
+	background: #E8F1F6;
+	display: flex;
+    flex-direction: column;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 25px;
+}
+
+.ajoutImage p {
+	font-family: 'Work Sans';
+	font-size: 10px;
+	font-weight: 400px;
+}
+
+#modal-ajout label {
+	width: 420px;
+	font-family: 'Work Sans';
+	font-size: 14px;
+	font-weight: 500px;
+	margin-top: 10px;
+}
+
+#titre,
+#categories {
+    height: 50px;
+	width: 420px;
+    border-bottom-width: 0px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px;
+	box-shadow: 0px 4px 14px 0px rgba(0,0,0,0.09);
+}
+
+#titre {
+padding-left: 5px;
+padding-right: 5px;
+box-sizing: border-box;
+}
+
+.formInputs {
+	display: flex;
+    flex-direction: column;
+    gap: 10px;
+	padding-bottom: 50px;
+	border-bottom: 1px solid black;
+}
+
+#categories {
+	cursor: pointer;
+}
+
+#modal-ajout input[type="submit"] {
+	width: 240px;
+	height: 40px;
+	margin-top: 40px;
+	margin-bottom: 50px;
+	font-size: 14px;
+	font-weight: 700px;
+	border-radius: 60px;
+	color: white;
+	background-color: #1D6154;
+	border: 0px;
+	font-family: 'Syne';
+	cursor: pointer;
+}
+
+.boutonValiderVide {
+	width: 240px;
+	height: 40px;
+	margin-top: 40px;
+	margin-bottom: 50px;
+	font-size: 14px;
+	font-weight: 700px;
+	border-radius: 60px;
+	color: white;
+	background-color: #A7A7A7;
+	border: 0px;
+	font-family: 'Syne';
+	cursor: pointer;
+}
+
+.boutonValider {
+	width: 240px;
+	height: 40px;
+	margin-top: 40px;
+	margin-bottom: 50px;
+	font-size: 14px;
+	font-weight: 700px;
+	border-radius: 60px;
+	color: white;
+	background-color: #1D6154;
+	border: 0px;
+	font-family: 'Syne';
+	cursor: pointer;
 }
 
 
@@ -343,7 +468,7 @@ nav a:active {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+#contact input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
