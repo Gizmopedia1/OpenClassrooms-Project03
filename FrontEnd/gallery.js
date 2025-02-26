@@ -4,25 +4,25 @@ const objets = await response.json();
 
 // Fonction qui génère toute la page web
 function genererObjets(objets) {
-for (let i=0; i<objets.length; i++) {
+    for (let i=0; i<objets.length; i++) {
 
-const article = objets[i];
-    
-const imageElement = document.createElement("img");
-imageElement.src = article.imageUrl;
-imageElement.alt = article.title;
+    const article = objets[i];
+        
+    const imageElement = document.createElement("img");
+    imageElement.src = article.imageUrl;
+    imageElement.alt = article.title;
 
-const nomElement = document.createElement("figcaption");
-nomElement.innerText = article.title;
+    const nomElement = document.createElement("figcaption");
+    nomElement.innerText = article.title;
 
-const figureElement = document.createElement("figure");
-figureElement.appendChild (imageElement);
-figureElement.appendChild (nomElement);
+    const figureElement = document.createElement("figure");
+    figureElement.appendChild (imageElement);
+    figureElement.appendChild (nomElement);
 
 
-const section = document.getElementById("gallery");
-section.appendChild (figureElement)
-}
+    const section = document.getElementById("gallery");
+    section.appendChild (figureElement)
+    }
 }
 
 // Affichage de tous les objets
@@ -34,6 +34,7 @@ genererObjets(objets)
 const responseCategories = await fetch("http://localhost:5678/api/categories");
 const categories = await responseCategories.json();
 
+// Dynamisation des boutons de filtres
 function addButton(name) {
     const button = document.createElement("button");
     button.className = "box-filtres";
@@ -79,7 +80,7 @@ function masquerModeEdition() {
     document.getElementById('mode-edition-portfolio').style.display = 'none';
 }
 
-// Vérification de la validité du token
+// Vérification de la présence du token
 const token = localStorage.getItem("token");
 
 if (token) {
@@ -96,6 +97,7 @@ function logout() {
     window.location.href = 'index.html';
 }
 
+// Modale (ouverture/fermeture)
 let modal = null
 
 const openModal = function (e) {
@@ -122,6 +124,8 @@ const closeModal = function(e) {
     document.getElementById("formAjout").reset();
     document.getElementById("preview").style.display = 'none';
     document.getElementById("ajoutImageDiv").style.display = 'flex';
+    document.getElementById('submit-button').classList.remove('submit-button-fill');
+    document.getElementById('submit-button').classList.add('submit-button');
     modal = null
 }
 
@@ -137,7 +141,7 @@ document.querySelectorAll(".js-modal").forEach(a => {
 const responseModal = await fetch("http://localhost:5678/api/works")
 const objetsModal = await responseModal.json();
 
-// Fonction qui génère toute la page web
+// Fonction qui génère la galerie de la modale
 function genererObjetsmodal(objets) {
     for (let i=0; i<objets.length; i++) {
 
@@ -152,26 +156,7 @@ function genererObjetsmodal(objets) {
         boutonPoubelle.classList.add("boutonPoubelle")
         boutonPoubelle.innerHTML = '<i class="fa-solid fa-trash-can" data-id="'+dataID+'"></i>';
         boutonPoubelle.setAttribute("data-id", dataID);
-
-        const figureElement = document.createElement("figure");
-        figureElement.appendChild (imageElement);
-        figureElement.appendChild (boutonPoubelle);
-        figureElement.setAttribute("data-id", dataID);
-        figureElement.setAttribute("id", dataID)
-
-        const section = document.getElementById("modal-gallery");
-        section.appendChild (figureElement)
-    }
-}
-
-// Affichage de tous les objets
-genererObjetsmodal(objetsModal);
-
-
-    const buttons = document.querySelectorAll(".boutonPoubelle");
-    
-    buttons.forEach(button => {
-        button.addEventListener('click', async (event) => {
+        boutonPoubelle.addEventListener('click', async (event) => {
             const id = event.target.dataset.id;
 
             try {
@@ -200,7 +185,21 @@ genererObjetsmodal(objetsModal);
                 console.error('Erreur:', error);
             }
         });
-    });
+
+        const figureElement = document.createElement("figure");
+        figureElement.appendChild (imageElement);
+        figureElement.appendChild (boutonPoubelle);
+        figureElement.setAttribute("data-id", dataID);
+        figureElement.setAttribute("id", dataID)
+
+        const section = document.getElementById("modal-gallery");
+        section.appendChild (figureElement)
+    }
+}
+
+// Affichage de tous les objets
+genererObjetsmodal(objetsModal);
+
 
 // Menu déroulant Catégories
 fetch("http://localhost:5678/api/categories")
@@ -215,16 +214,8 @@ fetch("http://localhost:5678/api/categories")
     });
 })
 
-// Bouton Submit quand les Inputs sont vides
-// let submitVide = document.getElementById("boutonValider");
 
-// submitVide.addEventListener("#modal-ajout input", e => {
-//   if (e.target.value !== "") {
-//     e.target.style.backgroundColor = #1D6154;
-//   } else {
-//     e.target.style.backgroundColor = #A7A7A7;
-//   }
-// });
+
 
 // //Fonction de passage à la modale d'ajout de photo
 function modaleAjoutPhoto() {
@@ -238,7 +229,7 @@ function modaleSupprPhoto() {
     document.getElementById('modal-suppression').style.display = "block";
 }
 
-// Vérification de la validité du token
+// Event Listeners sur les clics de changement de modale
 document.getElementById('boutonAjout').addEventListener('click', modaleAjoutPhoto);
 document.getElementById('retour-modal').addEventListener('click', modaleSupprPhoto);
 document.getElementById('modal1').addEventListener('click', modaleSupprPhoto);
@@ -264,10 +255,33 @@ fileInput.addEventListener('change', function() {
     }
 });
 
+// Bouton Submit quand les Inputs sont vides
+const form = document.getElementById("formAjout");
+const titleInput = document.getElementById('title');
+const categoryInput = document.getElementById('category');
+const submitButton = document.getElementById('submit-button');
+
+// Fonction pour vérifier si tous les champs sont remplis
+function checkFormCompletion() {
+    if (titleInput.value && categoryInput.value && fileInput.files.length > 0) {
+        submitButton.classList.remove('submit-button');
+        submitButton.classList.add('submit-button-fill');
+    } else {
+        submitButton.classList.remove('submit-button-fill');
+        submitButton.classList.add('submit-button');
+    }
+}
+
+// Ajoutez un événement "input" à chacun des champs pour vérifier à chaque saisie
+titleInput.addEventListener('input', checkFormCompletion);
+categoryInput.addEventListener('change', checkFormCompletion);
+fileInput.addEventListener('change', checkFormCompletion);
+
+
 // // Formulaire d'ajout d'images
 const formAjout = document.getElementById("formAjout");
 
-formAjout.addEventListener("submit", function(event) {
+formAjout.addEventListener("submit", async(event) => {
     event.preventDefault()
 
     const formData = new FormData(formAjout); // Créez un objet FormData à partir du formulaire
@@ -278,34 +292,34 @@ formAjout.addEventListener("submit", function(event) {
     const category = formData.get('category'); // Récupère la catégorie
     
     // Vérification
-    console.log('Image:', image);
-    console.log('Titre:', title);
-    console.log('Catégorie:', category);
 
-    fetch("http://localhost:5678/api/works", {
-        method: 'POST',
-        headers: {
+    try {
+        const responseImage = await fetch("http://localhost:5678/api/works", {
+            method: 'POST',
+            headers: {
             'Authorization': `Bearer ${localStorage.getItem("token")}`
-        },
-        body: formData
-    })
-    .then(responseImage => {
-        if (!responseImage.ok) {
-            throw new Error('Une erreur s\'est produite lors de l\'envoi des données.');
+            },
+            body: formData
+        });
+
+        if (responseImage.ok) {
+
+            const response = await fetch("http://localhost:5678/api/works")
+            const objets = await response.json();
+            document.getElementById("modal-gallery").innerHTML = ""
+            genererObjetsmodal(objets);
+            document.getElementById("gallery").innerHTML = ""
+            genererObjets(objets);
+            document.getElementById("formAjout").reset();
+            document.getElementById("preview").style.display = 'none';
+            document.getElementById("ajoutImageDiv").style.display = 'flex';
+            console.log("L'objet a été ajouté avec succès.")
+            modaleSupprPhoto();
+        
+        } else {
+            console.log("Une erreur s'est produite lors de l'envoi des données.");
         }
-        // return responseImage.json();
-        // const response = fetch("http://localhost:5678/api/works")
-        // const objets = response.json();
-        // document.getElementById("modal-gallery").innerHTML = ""
-        // genererObjetsmodal(objets);
-        // document.getElementById("gallery").innerHTML = ""
-        // genererObjets(objets);
-        // document.getElementById("formAjout").reset();
-    })
-    .then(dataImage => {
-        console.log('Réponse de l\'API:', dataImage);
-    })
-    .catch(error => {
+    } catch (error) {
         console.error('Erreur:', error);
-    });
+    }
 });

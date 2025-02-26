@@ -243,7 +243,10 @@ nav a:active {
 	background-color: #1D6154;
 	border: 0px;
 	cursor: pointer;
+}
 
+.boutonAjout:hover {
+	background-color: #0E2F28;
 }
 
 .boutonPoubelle {
@@ -275,8 +278,11 @@ nav a:active {
 }
 
 .modal-gallery img {
-	width: 100%;
+	width: 75px;
+	height: 100px;
+	object-fit: cover;
 }
+
 #modal-ajout form {
 	display: flex;
     flex-direction: column;
@@ -394,22 +400,7 @@ box-sizing: border-box;
 	cursor: pointer;
 }
 
-#modal-ajout input[type="submit"] {
-	width: 240px;
-	height: 40px;
-	margin-top: 40px;
-	margin-bottom: 50px;
-	font-size: 14px;
-	font-weight: 700px;
-	border-radius: 60px;
-	color: white;
-	background-color: #1D6154;
-	border: 0px;
-	font-family: 'Syne';
-	cursor: pointer;
-}
-
-.boutonValiderVide {
+.submit-button {
 	width: 240px;
 	height: 40px;
 	margin-top: 40px;
@@ -424,7 +415,7 @@ box-sizing: border-box;
 	cursor: pointer;
 }
 
-.boutonValider {
+.submit-button-fill {
 	width: 240px;
 	height: 40px;
 	margin-top: 40px;
@@ -439,6 +430,9 @@ box-sizing: border-box;
 	cursor: pointer;
 }
 
+.submit-button-fill:hover {
+	background-color: #0E2F28;
+}
 
 .box-filtres {
 	font-weight: 700;
@@ -473,7 +467,9 @@ box-sizing: border-box;
 }
 
 .gallery img {
-	width: 100%;
+	width: 305px;
+	height: 408px;
+	object-fit: cover;
 }
 
 
@@ -526,7 +522,7 @@ box-sizing: border-box;
 	cursor: pointer;
 }
 
-input:hover[type="submit"]{
+#contact input:hover[type="submit"]{
 	background-color: #0E2F28;
 	cursor: pointer;
 }
