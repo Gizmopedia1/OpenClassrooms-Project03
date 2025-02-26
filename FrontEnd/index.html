@@ -58,18 +58,23 @@
 						<div id="modal-ajout">
 							<i class="fa-solid fa-arrow-left" id="retour-modal"></i>
 							<h3 id="titlemodal">Ajout photo</h3>
-							<form>
-								<div class="ajoutImage">
-									<img src="./assets/icons/picture.png"/>
-									<label for="ajouterImage">+ Ajouter photo</label>
-									<input type="file" id="images" name="images" accept="image/png, image/jpeg" />
-									<p>jpg, png : 4mo max</p>
+							<form id="formAjout">
+								<div class="rectangle-ajoutImage">
+									<img id="preview" src="" alt="Prévisualisation">
+									<div class="ajoutImage" id="ajoutImageDiv">
+										<img src="./assets/icons/picture.png"/>
+										<div class="flex-boutonajout">
+											<p class="choisirPhoto" id="choisirPhoto">+ Ajouter photo</p>
+											<input type="file" id="inputAjoutImages" name="image" accept="image/png, image/jpeg" required/>
+										</div>
+										<p class="fileType">jpg, png : 4mo max</p>
+									</div>
 								</div>
 								<div class="formInputs">
-									<label for="titre">Titre</label>
-									<input type="text" id="titre" name="titre" required>
-									<label for="categories">Catégorie</label>
-									<select id="categories" name="categories" required>
+									<label for="title">Titre</label>
+									<input type="text" id="title" name="title" required>
+									<label for="category">Catégorie</label>
+									<select id="category" name="category" required>
 										<option value="" disabled selected></option>
 									</select>
 								</div>

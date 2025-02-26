@@ -119,6 +119,9 @@ const closeModal = function(e) {
     modal.removeEventListener("click", closeModal)
     modal.querySelector(".close-modal").removeEventListener("click", closeModal)
     modal.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation)
+    document.getElementById("formAjout").reset();
+    document.getElementById("preview").style.display = 'none';
+    document.getElementById("ajoutImageDiv").style.display = 'flex';
     modal = null
 }
 
@@ -165,13 +168,11 @@ function genererObjetsmodal(objets) {
 genererObjetsmodal(objetsModal);
 
 
-// async function supprimerObjets(id, figure) {
     const buttons = document.querySelectorAll(".boutonPoubelle");
     
     buttons.forEach(button => {
         button.addEventListener('click', async (event) => {
             const id = event.target.dataset.id;
-            console.log('ID à supprimer:', id);
 
             try {
                 const response = await fetch (`http://localhost:5678/api/works/${id}`, {
@@ -200,16 +201,15 @@ genererObjetsmodal(objetsModal);
             }
         });
     });
-// }
 
 // Menu déroulant Catégories
 fetch("http://localhost:5678/api/categories")
 .then(responseOptionCategories => responseOptionCategories.json())
 .then(data => {
-    const select = document.getElementById('categories');
+    const select = document.getElementById('category');
     data.forEach(item => {
         const option = document.createElement('option');
-        option.value = item.name;
+        option.value = item.id;
         option.textContent = item.name;
         select.appendChild(option);
     });
@@ -241,3 +241,71 @@ function modaleSupprPhoto() {
 // Vérification de la validité du token
 document.getElementById('boutonAjout').addEventListener('click', modaleAjoutPhoto);
 document.getElementById('retour-modal').addEventListener('click', modaleSupprPhoto);
+document.getElementById('modal1').addEventListener('click', modaleSupprPhoto);
+
+// Prévisualisation d'une image ajoutée
+const fileInput = document.getElementById("inputAjoutImages");
+const preview = document.getElementById("preview");
+const ajoutImageDiv = document.getElementById("ajoutImageDiv");
+
+fileInput.addEventListener('change', function() {
+    const file = fileInput.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+            ajoutImageDiv.style.display = 'none';
+        }
+
+        reader.readAsDataURL(file); // lit le fichier comme URL de données
+    }
+});
+
+// // Formulaire d'ajout d'images
+const formAjout = document.getElementById("formAjout");
+
+formAjout.addEventListener("submit", function(event) {
+    event.preventDefault()
+
+    const formData = new FormData(formAjout); // Créez un objet FormData à partir du formulaire
+
+    // Récupérez les valeurs
+    const image = formData.get('image'); // Récupère le fichier image
+    const title = formData.get('title'); // Récupère le titre
+    const category = formData.get('category'); // Récupère la catégorie
+    
+    // Vérification
+    console.log('Image:', image);
+    console.log('Titre:', title);
+    console.log('Catégorie:', category);
+
+    fetch("http://localhost:5678/api/works", {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem("token")}`
+        },
+        body: formData
+    })
+    .then(responseImage => {
+        if (!responseImage.ok) {
+            throw new Error('Une erreur s\'est produite lors de l\'envoi des données.');
+        }
+        // return responseImage.json();
+        // const response = fetch("http://localhost:5678/api/works")
+        // const objets = response.json();
+        // document.getElementById("modal-gallery").innerHTML = ""
+        // genererObjetsmodal(objets);
+        // document.getElementById("gallery").innerHTML = ""
+        // genererObjets(objets);
+        // document.getElementById("formAjout").reset();
+    })
+    .then(dataImage => {
+        console.log('Réponse de l\'API:', dataImage);
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+    });
+});
