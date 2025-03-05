@@ -251,7 +251,7 @@ fileInput.addEventListener('change', function() {
             ajoutImageDiv.style.display = 'none';
         }
 
-        reader.readAsDataURL(file); // lit le fichier comme URL de données
+        reader.readAsDataURL(file);
     }
 });
 
