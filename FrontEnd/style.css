@@ -472,7 +472,6 @@ box-sizing: border-box;
 	object-fit: cover;
 }
 
-
 #contact {
     width: 100%;
     align-content: center;
@@ -485,9 +484,11 @@ box-sizing: border-box;
 	text-align: center;
 
 }
+
 #contact h2{
 	margin-bottom: 20px;
 }
+
 #contact form {
 	width: 380px;
 	text-align: left;
@@ -502,9 +503,11 @@ box-sizing: border-box;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 #contact label {
 	margin: 2em 0 1em 0;
 }
+
 #contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);

@@ -1,7 +1,6 @@
 const form = document.querySelector('form');
 form.addEventListener("submit", async(event) => {
     event.preventDefault()
-    console.log(event.target.email.value);
 
     const dataform = {
         email: event.target.email.value,
@@ -14,13 +13,8 @@ form.addEventListener("submit", async(event) => {
         body: JSON.stringify (dataform)
     })
 
-        if (!response.ok) {
-            console.log("Erreur dans l’identifiant ou le mot de passe")
-        }
-        else {
+        if (response.ok) {
             const data = await response.json()
-            console.log(data)
-            console.log(data.token)
 
             window.localStorage.setItem("token", data.token);
             window.location.href = 'index.html'
