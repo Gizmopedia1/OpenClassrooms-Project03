@@ -145,6 +145,8 @@ document.querySelectorAll(".js-modal").forEach(a => {
 const responseModal = await fetch("http://localhost:5678/api/works")
 const objetsModal = await responseModal.json();
 
+
+
 // Fonction qui génère la galerie de la modale
 function genererObjetsmodal(objets) {
     for (let i=0; i<objets.length; i++) {
@@ -172,20 +174,22 @@ function genererObjetsmodal(objets) {
                     }
                 });
                 
-                if (response.ok) {
-                    
-                    const response = await fetch("http://localhost:5678/api/works")
-                    const objets = await response.json();
-                    document.getElementById("modal-gallery").innerHTML = ""
-                    genererObjetsmodal(objets);
-                    document.getElementById("gallery").innerHTML = ""
-                    genererObjets(objets);
-                    document.getElementById('delete-success').innerText = "Objet supprimé avec succès!";
-                    document.getElementById('delete-error').innerText = "" ;
-                }
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(`Erreur ${response.status}: ${response.statusText}`);
+                    } else {
+                        const response = await fetch("http://localhost:5678/api/works")
+                        const objets = await response.json();
+                        document.getElementById("modal-gallery").innerHTML = ""
+                        genererObjetsmodal(objets);
+                        document.getElementById("gallery").innerHTML = ""
+                        genererObjets(objets);
+                        document.getElementById('delete-success').innerText = "Objet supprimé avec succès!";
+                        document.getElementById('delete-error').innerText = "" ;
+                    }     
+                      
             } catch (error) {
-                console.error('Erreur:', error);
-                document.getElementById('delete-error').innerText = "Erreur lors de la suppression. " + error;
+                document.getElementById('delete-error').innerText = error.message
                 document.getElementById('delete-success').innerText = "";
             }
         });
@@ -310,8 +314,10 @@ formAjout.addEventListener("submit", async(event) => {
             body: formData
         });
 
-        if (responseImage.ok) {
-
+        if (!responseImage.ok) {
+            const errorData = await responseImage.json();
+            throw new Error(`Erreur ${responseImage.status}: ${responseImage.statusText}`);
+        } else {
             const response = await fetch("http://localhost:5678/api/works")
             const objets = await response.json();
             document.getElementById("modal-gallery").innerHTML = ""
@@ -326,7 +332,6 @@ formAjout.addEventListener("submit", async(event) => {
             modaleSupprPhoto();
         }
     } catch (error) {
-        console.error('Erreur:', error);
-        document.getElementById('add-error').innerText = "Erreur lors de l'ajout. " + error;
+        document.getElementById('add-error').innerText = error.message
     }
 });
