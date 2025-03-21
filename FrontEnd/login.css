@@ -138,6 +138,13 @@ nav a:active {
 #login h2{
 	margin-bottom: 20px;
 }
+
+#id-error {
+	color: red;
+	font-weight: bolder;
+	display: none;
+}
+
 #login form {
 	width: 380px;
 	text-align: left;

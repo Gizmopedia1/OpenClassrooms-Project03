@@ -126,6 +126,9 @@ const closeModal = function(e) {
     document.getElementById("ajoutImageDiv").style.display = 'flex';
     document.getElementById('submit-button').classList.remove('submit-button-fill');
     document.getElementById('submit-button').classList.add('submit-button');
+    document.getElementById('delete-success').innerText = "";
+    document.getElementById('delete-error').textContent = "";
+    document.getElementById('add-error').textContent = "";
     modal = null
 }
 
@@ -136,6 +139,7 @@ const stopPropagation = function (e) {
 document.querySelectorAll(".js-modal").forEach(a => {
     a.addEventListener("click", openModal)
 })
+
 
 // Récupération des objets depuis le fichier JSON works
 const responseModal = await fetch("http://localhost:5678/api/works")
@@ -176,13 +180,13 @@ function genererObjetsmodal(objets) {
                     genererObjetsmodal(objets);
                     document.getElementById("gallery").innerHTML = ""
                     genererObjets(objets);
-
-              
-                } else {
-                    console.log('Erreur lors de la suppression.');
+                    document.getElementById('delete-success').innerText = "Objet supprimé avec succès!";
+                    document.getElementById('delete-error').innerText = "" ;
                 }
             } catch (error) {
                 console.error('Erreur:', error);
+                document.getElementById('delete-error').innerText = "Erreur lors de la suppression. " + error;
+                document.getElementById('delete-success').innerText = "";
             }
         });
 
@@ -215,18 +219,22 @@ fetch("http://localhost:5678/api/categories")
 })
 
 
-
-
 // //Fonction de passage à la modale d'ajout de photo
 function modaleAjoutPhoto() {
     document.getElementById('modal-suppression').style.display = "none";
     document.getElementById('modal-ajout').style.display = "block";
+    document.getElementById('delete-success').innerText = "";
+    document.getElementById('delete-error').textContent = "";
+    document.getElementById('delete-error').textContent = "";
 }
 
 // //Fonction de retour à la modale de suppression de photo
 function modaleSupprPhoto() {
     document.getElementById('modal-ajout').style.display = "none";
     document.getElementById('modal-suppression').style.display = "block";
+    document.getElementById('delete-success').innerText = "";
+    document.getElementById('delete-error').textContent = "";
+    document.getElementById('delete-error').textContent = "";
 }
 
 // Event Listeners sur les clics de changement de modale
@@ -314,12 +322,11 @@ formAjout.addEventListener("submit", async(event) => {
             document.getElementById("preview").style.display = 'none';
             document.getElementById("ajoutImageDiv").style.display = 'flex';
             console.log("L'objet a été ajouté avec succès.")
+            document.getElementById('add-error').innerText = "";
             modaleSupprPhoto();
-        
-        } else {
-            console.log("Une erreur s'est produite lors de l'envoi des données.");
         }
     } catch (error) {
         console.error('Erreur:', error);
+        document.getElementById('add-error').innerText = "Erreur lors de l'ajout. " + error;
     }
 });

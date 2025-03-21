@@ -18,6 +18,8 @@ form.addEventListener("submit", async(event) => {
 
             window.localStorage.setItem("token", data.token);
             window.location.href = 'index.html'
+            document.getElementById('id-error').style.display = "none";
+        } else {
+            document.getElementById('id-error').style.display = "block";
         }
-
 });

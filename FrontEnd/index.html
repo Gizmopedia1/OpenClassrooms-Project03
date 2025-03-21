@@ -44,13 +44,15 @@
 		<div class="flex-portfolio-title">
 			<h2>Mes Projets</h2>
 			<div id="mode-edition-portfolio">
-				<a href="#modal1" class="js-modal"><i class="fa-regular fa-pen-to-square"></i> modifier</a>
+				<a href="#modal1" class="js-modal" id="edit-button"><i class="fa-regular fa-pen-to-square"></i> modifier</a>
 
 				<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display: none;">
 					<div class="modal-wrapper js-modal-stop">
-						<a href="" class="close-modal"><i class="fa-solid fa-xmark"></i></a>
+						<a href="" class="close-modal" id="close-modal"><i class="fa-solid fa-xmark"></i></a>
 						<div id="modal-suppression">
 							<h3 id="titlemodal">Galerie photo</h3>
+							<div id="delete-error"></div>
+							<div id="delete-success"></div>
 							<div class="modal-gallery" id="modal-gallery">
 							</div>
 							<button class="boutonAjout" id="boutonAjout">Ajouter une photo</button>
@@ -58,6 +60,7 @@
 						<div id="modal-ajout">
 							<i class="fa-solid fa-arrow-left" id="retour-modal"></i>
 							<h3>Ajout photo</h3>
+							<div id="add-error"></div>
 							<form id="formAjout">
 								<div class="rectangle-ajoutImage">
 									<img id="preview" src="" alt="Prévisualisation">

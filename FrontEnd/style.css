@@ -230,6 +230,24 @@ nav a:active {
 	margin-bottom: 40px;
 }
 
+#delete-error {
+	font-weight: bolder;
+    color: red;
+    margin-bottom: 25px;
+}
+
+#delete-success {
+	font-weight: bolder;
+    color: green;
+    margin-bottom: 25px;
+}
+
+#add-error {
+	font-weight: bolder;
+    color: red;
+    margin-bottom: 25px;
+}
+
 .boutonAjout {
 	width: 240px;
 	height: 40px;
